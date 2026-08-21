@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.pnpm-store/
+edit/
+
+# Keep source masters local; commit the GitHub-ready web copies.
+public/portfolio/video/video-02.mp4
+public/portfolio/video/video-06.mp4

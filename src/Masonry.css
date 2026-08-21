@@ -1,0 +1,44 @@
+.list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.item-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  will-change: transform, width, height, opacity;
+  text-align: left;
+}
+
+.item-wrapper > .item-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(98, 214, 232, .25);
+  border-radius: 10px;
+  background-color: #11191b;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-shadow: 0 10px 50px -10px rgba(0, 0, 0, .35);
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+
+.item-wrapper:hover > .item-img,
+.item-wrapper:focus-visible > .item-img {
+  border-color: rgba(209, 239, 101, .72);
+  box-shadow: 0 14px 50px -12px rgba(98, 214, 232, .28);
+}
+
+.item-wrapper:focus-visible { outline: none; }
+.item-img video { width: 100%; height: 100%; display: block; object-fit: contain; background: #11191b; }
+.color-overlay { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: linear-gradient(45deg, rgba(209, 239, 101, .36), rgba(0, 150, 255, .28)); }
