@@ -15,7 +15,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: Manrope, "PingFang SC", "Microsoft YaHei", sans-serif; }
+body { margin: 0; overflow-x: hidden; background: var(--bg); color: var(--ink); font-family: Manrope, "PingFang SC", "Microsoft YaHei", sans-serif; }
 button, a { color: inherit; font: inherit; }
 button { border: 0; cursor: pointer; }
 a { text-decoration: none; }
@@ -356,9 +356,13 @@ em { color: var(--lime); font-style: normal; }
 @media (max-width: 760px) {
   .site-header { padding-left: 20px; padding-right: 20px; }
   .hero::before, .hero-video, .hero::after, .hero-grid { left: 20px; right: 20px; top: 20px; border-radius: 22px 22px 0 0; }
-  .hero-content { min-height: 0; padding-top: 220px; padding-right: 20px; padding-bottom: 0; padding-left: 20px; }
-  .hero h1 { max-width: 100%; font-size: clamp(64px, 17vw, 130px); }
+  .hero-content { min-height: 0; padding-top: clamp(140px, 28vw, 185px); padding-right: 0; padding-bottom: 78px; padding-left: 0; }
+  .hero h1 { max-width: 100%; margin-top: 22px; margin-bottom: 22px; font-size: clamp(56px, 16vw, 100px); }
+  .hero-lede { max-width: 100%; margin-left: 0; font-size: 13px; }
+  .hero-actions { margin-left: 0; flex-wrap: wrap; }
+  .hero-stat-strip { width: 100%; margin-left: 0; }
   .hero-feature-bar, .hero-spec-card, .hero-rail { display: none; }
+  .hero-noise { animation: none; opacity: .035; }
   .hero-bottom { width: calc(100% - 40px); bottom: 20px; justify-content: flex-end; }
 }
 
@@ -472,7 +476,28 @@ em { color: var(--lime); font-style: normal; }
 }
 
 @media (max-width: 760px) {
-  .hero-accordion { display: none; }
+  .hero-accordion {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: calc(100% - 40px);
+    margin: 0 20px 24px;
+    transform: none;
+  }
+
+  .hero-accordion .accordion-gallery {
+    height: 96px !important;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+
+  .hero-accordion .accordion-gallery::-webkit-scrollbar { display: none; }
+  .hero-accordion .ag-panel { flex: 0 0 172px !important; height: 96px; min-height: 96px; transform: none !important; }
+  .hero-accordion .ag-panel--active { flex-basis: 228px !important; }
+  .hero-accordion .ag-panel__label { left: 9px; right: auto; bottom: 9px; width: calc(100% - 18px); }
 }
 
 /* Masonry project detail view: the clicked card opens the full portfolio archive. */

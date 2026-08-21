@@ -170,7 +170,11 @@ const Masonry = ({
           aria-label={item.alt || '查看作品'}
         >
           <span className="item-img" style={item.video ? undefined : { backgroundImage: `url(${item.img})` }}>
-            {item.video && <video src={item.video} autoPlay loop muted playsInline preload="metadata" />}
+            {item.video && (
+              <video poster={item.img} autoPlay loop muted playsInline preload="metadata">
+                <source src={item.video} type="video/mp4" media="(min-width: 761px)" />
+              </video>
+            )}
             {colorShiftOnHover && <span className="color-overlay" />}
           </span>
         </button>
