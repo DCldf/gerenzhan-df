@@ -193,6 +193,7 @@ const AccordionGallery = ({
               <span className="ag-panel__media" ref={(element) => { mediaRefs.current[index] = element }}>
                 {item.video ? (
                   <video poster={item.image} autoPlay loop muted playsInline preload="metadata" aria-label={item.alt || item.label || ''}>
+                    <source src={item.mobileVideo || item.video} type="video/mp4" media="(max-width: 760px)" />
                     <source src={item.video} type="video/mp4" media="(min-width: 761px)" />
                   </video>
                 ) : (

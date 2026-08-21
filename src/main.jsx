@@ -114,12 +114,12 @@ const portfolioGroups = {
     { id: 'render-11', img: '/portfolio/render/render-11.jpg', height: 520, alt: '3D 渲染作品 11' },
   ],
   video: [
-    { id: 'video-01', video: '/portfolio/video/video-01.mp4', img: '/works/work-ai-sport.jpg', height: 620, alt: '视频剪辑作品 01' },
-    { id: 'video-02', video: '/portfolio/video/video-02-cf.mp4', img: '/works/work-ai-robot-full.jpg', height: 520, alt: '视频剪辑作品 02' },
-    { id: 'video-03', video: '/portfolio/video/video-03.mp4', img: '/works/work-kitchen-product.jpg', height: 580, alt: '视频剪辑作品 03' },
-    { id: 'video-04', video: '/portfolio/video/video-04-cf.mp4', img: '/works/work-ai-sport.jpg', height: 560, alt: '视频剪辑作品 04' },
-    { id: 'video-05', video: '/portfolio/video/video-05-cf.mp4', img: '/works/work-ai-robot.jpg', height: 560, alt: '视频剪辑作品 05' },
-    { id: 'video-06', video: '/portfolio/video/video-06-cf.mp4', img: '/works/work-ai-robot-full.jpg', height: 560, alt: '视频剪辑作品 06' },
+    { id: 'video-01', video: '/portfolio/video/video-01.mp4', mobileVideo: '/portfolio/video/video-01-mobile.mp4', img: '/works/work-ai-sport.jpg', height: 620, alt: '视频剪辑作品 01' },
+    { id: 'video-02', video: '/portfolio/video/video-02-cf.mp4', mobileVideo: '/portfolio/video/video-02-mobile.mp4', img: '/works/work-ai-robot-full.jpg', height: 520, alt: '视频剪辑作品 02' },
+    { id: 'video-03', video: '/portfolio/video/video-03.mp4', mobileVideo: '/portfolio/video/video-03-mobile.mp4', img: '/works/work-kitchen-product.jpg', height: 580, alt: '视频剪辑作品 03' },
+    { id: 'video-04', video: '/portfolio/video/video-04-cf.mp4', mobileVideo: '/portfolio/video/video-04-mobile.mp4', img: '/works/work-ai-sport.jpg', height: 560, alt: '视频剪辑作品 04' },
+    { id: 'video-05', video: '/portfolio/video/video-05-cf.mp4', mobileVideo: '/portfolio/video/video-05-mobile.mp4', img: '/works/work-ai-robot.jpg', height: 560, alt: '视频剪辑作品 05' },
+    { id: 'video-06', video: '/portfolio/video/video-06-cf.mp4', mobileVideo: '/portfolio/video/video-06-mobile.mp4', img: '/works/work-ai-robot-full.jpg', height: 560, alt: '视频剪辑作品 06' },
   ],
   commerce: [
     ...Array.from({ length: 32 }, (_, index) => {
@@ -189,6 +189,7 @@ const projects = [
     art: 'art-video',
     image: portfolioGroups.video[0].img,
     video: portfolioGroups.video[0].video,
+    mobileVideo: portfolioGroups.video[0].mobileVideo,
     masonryItems: portfolioGroups.video,
   },
 ]
@@ -197,13 +198,14 @@ const heroHighlights = [
   { number: '01', title: '平面设计', detail: 'Poster / graphic / layout', art: 'art-aurora', image: portfolioGroups.graphic[0].img },
   { number: '02', title: '包装设计', detail: 'Package / label / identity', art: 'art-orbit', image: portfolioGroups.packaging[4].img },
   { number: '03', title: '3D 渲染', detail: 'Material / light / form', art: 'art-tide', image: portfolioGroups.render[4].img },
-  { number: '04', title: '视频剪辑', detail: 'Motion / rhythm / edit', art: 'art-grid', image: portfolioGroups.video[0].img, video: portfolioGroups.video[0].video },
+  { number: '04', title: '视频剪辑', detail: 'Motion / rhythm / edit', art: 'art-grid', image: portfolioGroups.video[0].img, video: portfolioGroups.video[0].video, mobileVideo: portfolioGroups.video[0].mobileVideo },
   { number: '05', title: '电商设计', detail: 'Product / retouch / layout', art: 'art-aurora', image: commerceCover },
 ]
 
 const accordionItems = heroHighlights.map((item) => ({
   image: item.image,
   video: item.video,
+  mobileVideo: item.mobileVideo,
   label: `${item.number} / ${item.title}`,
   alt: `${item.title} 作品缩略图`,
   link: '#work',
@@ -437,6 +439,7 @@ function App() {
 
       <section className="hero" id="top" data-motion-hero>
         <video className="hero-video" autoPlay loop muted playsInline preload="metadata" poster="/works/work-ai-robot-full.jpg" aria-hidden="true">
+          <source src="/hero-background-mobile.mp4" type="video/mp4" media="(max-width: 760px)" />
           <source src={videoSource} type="video/mp4" media="(min-width: 761px)" />
         </video>
         <div className="hero-noise" />
@@ -545,7 +548,7 @@ function App() {
         <div className="project-grid">
           {projects.map((project) => (
             <button className={`project-card ${project.art}`} data-motion-card key={project.number} onClick={() => { setSelectedMasonryItem(null); setActiveProject(project) }}>
-              <div className="project-art" data-motion-media aria-hidden="true">{project.video ? <video className="project-image project-video" poster={project.image} autoPlay loop muted playsInline preload="metadata"><source src={project.video} type="video/mp4" media="(min-width: 761px)" /></video> : project.image && <img className="project-image" src={project.image} alt="" loading="lazy" decoding="async" />}<span className="project-image-overlay" /><span className="art-label"><b>{project.number}</b><span> / {project.category}</span></span><span className="art-glow" /><span className="art-shape shape-a" /><span className="art-shape shape-b" /><span className="art-grid-lines" /></div>
+              <div className="project-art" data-motion-media aria-hidden="true">{project.video ? <video className="project-image project-video" poster={project.image} autoPlay loop muted playsInline preload="metadata"><source src={project.mobileVideo || project.video} type="video/mp4" media="(max-width: 760px)" /><source src={project.video} type="video/mp4" media="(min-width: 761px)" /></video> : project.image && <img className="project-image" src={project.image} alt="" loading="lazy" decoding="async" />}<span className="project-image-overlay" /><span className="art-label"><b>{project.number}</b><span> / {project.category}</span></span><span className="art-glow" /><span className="art-shape shape-a" /><span className="art-shape shape-b" /><span className="art-grid-lines" /></div>
               <div className="project-info"><div className="project-type">{project.type}</div><h3>{project.title}</h3><p>{project.description}</p><div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div>
               <span className="project-arrow">↗</span>
             </button>
@@ -600,7 +603,7 @@ function App() {
           <div className="masonry-lightbox-card" onClick={(event) => event.stopPropagation()}>
             <div className="masonry-lightbox-head"><span>{selectedMasonryItem.alt || '作品原图'}</span><button className="modal-close" onClick={() => setSelectedMasonryItem(null)} aria-label="关闭原图">×</button></div>
             <div className="masonry-lightbox-media">
-              {selectedMasonryItem.video ? <video src={selectedMasonryItem.video} controls autoPlay muted playsInline preload="auto" /> : <img src={selectedMasonryItem.img} alt={selectedMasonryItem.alt || '作品原图'} />}
+              {selectedMasonryItem.video ? <video controls autoPlay muted playsInline preload="auto"><source src={selectedMasonryItem.mobileVideo || selectedMasonryItem.video} type="video/mp4" media="(max-width: 760px)" /><source src={selectedMasonryItem.video} type="video/mp4" media="(min-width: 761px)" /></video> : <img src={selectedMasonryItem.img} alt={selectedMasonryItem.alt || '作品原图'} />}
             </div>
           </div>
         </div>

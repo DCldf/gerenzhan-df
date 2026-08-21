@@ -62,6 +62,7 @@ const Masonry = ({
     [5, 4, 3, 2],
     1
   )
+  const isMobileViewport = useMedia(['(max-width: 760px)'], [true], false)
   const [containerRef, { width }] = useMeasure()
   const [imagesReady, setImagesReady] = useState(false)
   const hasMounted = useRef(false)
@@ -171,7 +172,8 @@ const Masonry = ({
         >
           <span className="item-img" style={item.video ? undefined : { backgroundImage: `url(${item.img})` }}>
             {item.video && (
-              <video poster={item.img} autoPlay loop muted playsInline preload="metadata">
+              <video poster={item.img} autoPlay={!isMobileViewport} loop muted playsInline preload={isMobileViewport ? 'none' : 'metadata'}>
+                <source src={item.mobileVideo || item.video} type="video/mp4" media="(max-width: 760px)" />
                 <source src={item.video} type="video/mp4" media="(min-width: 761px)" />
               </video>
             )}
