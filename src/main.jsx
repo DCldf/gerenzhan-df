@@ -109,17 +109,17 @@ const portfolioGroups = {
     { id: 'render-06', img: '/portfolio/render/render-06.jpg', height: 460, alt: '3D 渲染作品 06' },
     { id: 'render-07', img: '/portfolio/render/render-07.jpg', height: 580, alt: '3D 渲染作品 07' },
     { id: 'render-08', img: '/portfolio/render/render-08.jpg', height: 540, alt: '3D 渲染作品 08', longform: true },
-    { id: 'render-09', img: '/portfolio/render/render-09.png', height: 640, alt: '3D 渲染作品 09', longform: true },
+    { id: 'render-09', img: '/portfolio/render/render-09.jpg', height: 640, alt: '3D 渲染作品 09', longform: true },
     { id: 'render-10', img: '/portfolio/render/render-10.jpg', height: 520, alt: '3D 渲染作品 10' },
     { id: 'render-11', img: '/portfolio/render/render-11.jpg', height: 520, alt: '3D 渲染作品 11' },
   ],
   video: [
     { id: 'video-01', video: '/portfolio/video/video-01.mp4', img: '/works/work-ai-sport.jpg', height: 620, alt: '视频剪辑作品 01' },
-    { id: 'video-02', video: '/portfolio/video/video-02-web.mp4', img: '/works/work-ai-robot-full.jpg', height: 520, alt: '视频剪辑作品 02' },
+    { id: 'video-02', video: '/portfolio/video/video-02-cf.mp4', img: '/works/work-ai-robot-full.jpg', height: 520, alt: '视频剪辑作品 02' },
     { id: 'video-03', video: '/portfolio/video/video-03.mp4', img: '/works/work-kitchen-product.jpg', height: 580, alt: '视频剪辑作品 03' },
-    { id: 'video-04', video: '/portfolio/video/video-04.mp4', img: '/works/work-ai-sport.jpg', height: 560, alt: '视频剪辑作品 04' },
-    { id: 'video-05', video: '/portfolio/video/video-05.mp4', img: '/works/work-ai-robot.jpg', height: 560, alt: '视频剪辑作品 05' },
-    { id: 'video-06', video: '/portfolio/video/video-06-web.mp4', img: '/works/work-ai-robot-full.jpg', height: 560, alt: '视频剪辑作品 06' },
+    { id: 'video-04', video: '/portfolio/video/video-04-cf.mp4', img: '/works/work-ai-sport.jpg', height: 560, alt: '视频剪辑作品 04' },
+    { id: 'video-05', video: '/portfolio/video/video-05-cf.mp4', img: '/works/work-ai-robot.jpg', height: 560, alt: '视频剪辑作品 05' },
+    { id: 'video-06', video: '/portfolio/video/video-06-cf.mp4', img: '/works/work-ai-robot-full.jpg', height: 560, alt: '视频剪辑作品 06' },
   ],
   commerce: [
     ...Array.from({ length: 32 }, (_, index) => {
