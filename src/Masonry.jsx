@@ -37,14 +37,6 @@ const useMeasure = () => {
   return [ref, size]
 }
 
-const preloadImages = async (urls) => {
-  await Promise.all(urls.map((src) => new Promise((resolve) => {
-    const image = new Image()
-    image.src = src
-    image.onload = image.onerror = () => resolve()
-  })))
-}
-
 const Masonry = ({
   items,
   ease = 'power3.out',
@@ -62,9 +54,8 @@ const Masonry = ({
     [5, 4, 3, 2],
     1
   )
-  const isMobileViewport = useMedia(['(max-width: 760px)'], [true], false)
   const [containerRef, { width }] = useMeasure()
-  const [imagesReady, setImagesReady] = useState(false)
+  const [imagesReady, setImagesReady] = useState(true)
   const hasMounted = useRef(false)
 
   const getInitialPosition = (item) => {
@@ -86,8 +77,11 @@ const Masonry = ({
   }
 
   useEffect(() => {
-    setImagesReady(false)
-    preloadImages(items.map((item) => item.img).filter(Boolean)).then(() => setImagesReady(true))
+    // Do not block the whole gallery on every original image. The browser can
+    // progressively load the visible cards and lazy-load the rest while the
+    // modal is scrolled.
+    hasMounted.current = false
+    setImagesReady(true)
   }, [items])
 
   const grid = useMemo(() => {
@@ -106,7 +100,7 @@ const Masonry = ({
   }, [columns, items, width])
 
   useLayoutEffect(() => {
-    if (!imagesReady) return
+    if (!imagesReady || !grid.length) return
 
     grid.forEach((item, index) => {
       const selector = `[data-key="${item.id}"]`
@@ -127,7 +121,9 @@ const Masonry = ({
           ...(blurToFocus ? { filter: 'blur(0px)' } : {}),
           duration: 0.8,
           ease: 'power3.out',
-          delay: index * stagger
+          // Keep large categories from looking empty for several seconds.
+          // The cards still enter in sequence, but the delay has a short cap.
+          delay: Math.min(index * stagger, 0.8)
         })
       } else {
         gsap.to(selector, { ...animationProps, duration, ease, overwrite: 'auto' })
@@ -159,7 +155,7 @@ const Masonry = ({
 
   return (
     <div ref={containerRef} className="list" role="list" aria-label="项目作品瀑布流">
-      {grid.map((item) => (
+      {grid.map((item, index) => (
         <button
           key={item.id}
           type="button"
@@ -170,12 +166,20 @@ const Masonry = ({
           onMouseLeave={(event) => handleMouseLeave(event, item)}
           aria-label={item.alt || '查看作品'}
         >
-          <span className="item-img" style={item.video ? undefined : { backgroundImage: `url(${item.img})` }}>
+            <span className="item-img">
             {item.video && (
-              <video poster={item.img} autoPlay={!isMobileViewport} loop muted playsInline preload={isMobileViewport ? 'none' : 'metadata'}>
+              <video poster={item.img} autoPlay={false} loop muted playsInline preload="none">
                 <source src={item.mobileVideo || item.video} type="video/mp4" media="(max-width: 760px)" />
                 <source src={item.video} type="video/mp4" media="(min-width: 761px)" />
               </video>
+            )}
+            {!item.video && (
+              <img
+                src={item.img}
+                alt={item.alt || '作品缩略图'}
+                loading={index < columns * 2 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
             )}
             {colorShiftOnHover && <span className="color-overlay" />}
           </span>

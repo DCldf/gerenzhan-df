@@ -438,7 +438,7 @@ function App() {
       </header>
 
       <section className="hero" id="top" data-motion-hero>
-        <video className="hero-video" autoPlay loop muted playsInline preload="metadata" poster="/works/work-ai-robot-full.jpg" aria-hidden="true">
+        <video className="hero-video" autoPlay loop muted playsInline preload="metadata" aria-hidden="true">
           <source src="/hero-background-mobile.mp4" type="video/mp4" media="(max-width: 760px)" />
           <source src={videoSource} type="video/mp4" media="(min-width: 761px)" />
         </video>
@@ -548,7 +548,7 @@ function App() {
         <div className="project-grid">
           {projects.map((project) => (
             <button className={`project-card ${project.art}`} data-motion-card key={project.number} onClick={() => { setSelectedMasonryItem(null); setActiveProject(project) }}>
-              <div className="project-art" data-motion-media aria-hidden="true">{project.video ? <video className="project-image project-video" poster={project.image} autoPlay loop muted playsInline preload="metadata"><source src={project.mobileVideo || project.video} type="video/mp4" media="(max-width: 760px)" /><source src={project.video} type="video/mp4" media="(min-width: 761px)" /></video> : project.image && <img className="project-image" src={project.image} alt="" loading="lazy" decoding="async" />}<span className="project-image-overlay" /><span className="art-label"><b>{project.number}</b><span> / {project.category}</span></span><span className="art-glow" /><span className="art-shape shape-a" /><span className="art-shape shape-b" /><span className="art-grid-lines" /></div>
+              <div className="project-art" data-motion-media aria-hidden="true">{project.image && <img className="project-image" src={project.image} alt="" loading="lazy" decoding="async" />}<span className="project-image-overlay" /><span className="art-label"><b>{project.number}</b><span> / {project.category}</span></span><span className="art-glow" /><span className="art-shape shape-a" /><span className="art-shape shape-b" /><span className="art-grid-lines" /></div>
               <div className="project-info"><div className="project-type">{project.type}</div><h3>{project.title}</h3><p>{project.description}</p><div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div>
               <span className="project-arrow">↗</span>
             </button>

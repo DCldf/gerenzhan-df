@@ -26,9 +26,6 @@
   border: 1px solid rgba(98, 214, 232, .25);
   border-radius: 10px;
   background-color: #11191b;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   box-shadow: 0 10px 50px -10px rgba(0, 0, 0, .35);
   transition: border-color .25s ease, box-shadow .25s ease;
 }
@@ -40,5 +37,6 @@
 }
 
 .item-wrapper:focus-visible { outline: none; }
+.item-img img,
 .item-img video { width: 100%; height: 100%; display: block; object-fit: contain; background: #11191b; }
 .color-overlay { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: linear-gradient(45deg, rgba(209, 239, 101, .36), rgba(0, 150, 255, .28)); }
