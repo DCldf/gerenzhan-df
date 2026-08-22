@@ -167,20 +167,12 @@ const Masonry = ({
           aria-label={item.alt || '查看作品'}
         >
             <span className="item-img">
-            {item.video && (
-              <video poster={item.img} autoPlay={false} loop muted playsInline preload="none">
-                <source src={item.mobileVideo || item.video} type="video/mp4" media="(max-width: 760px)" />
-                <source src={item.video} type="video/mp4" media="(min-width: 761px)" />
-              </video>
-            )}
-            {!item.video && (
-              <img
-                src={item.img}
-                alt={item.alt || '作品缩略图'}
-                loading={index < columns * 2 ? 'eager' : 'lazy'}
-                decoding="async"
-              />
-            )}
+            <img
+              src={item.img}
+              alt={item.alt || '作品缩略图'}
+              loading={index < columns * 2 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
             {colorShiftOnHover && <span className="color-overlay" />}
           </span>
         </button>

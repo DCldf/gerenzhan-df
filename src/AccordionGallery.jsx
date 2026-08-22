@@ -26,6 +26,7 @@ const AccordionGallery = ({
   const rootRef = useRef(null)
   const panelRefs = useRef([])
   const mediaRefs = useRef([])
+  const videoRefs = useRef([])
   const barRefs = useRef([])
   const textRefs = useRef([])
   const timelineRef = useRef(null)
@@ -34,6 +35,7 @@ const AccordionGallery = ({
   const vertical = orientation === 'vertical'
   const count = items.length
   const [active, setActive] = useState(Math.min(Math.max(defaultIndex, 0), Math.max(count - 1, 0)))
+  const [activatedVideos, setActivatedVideos] = useState(() => new Set())
   const prefersReduced = typeof window !== 'undefined' && window.matchMedia
     ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
     : false
@@ -130,15 +132,39 @@ const AccordionGallery = ({
     firstRunRef.current = false
   }, [applyLayout])
 
+  const activateVideo = useCallback((index) => {
+    if (!items[index]?.video) return
+    setActivatedVideos((previous) => {
+      if (previous.has(index)) return previous
+      const next = new Set(previous)
+      next.add(index)
+      return next
+    })
+  }, [items])
+
+  useEffect(() => {
+    activateVideo(active)
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return
+      if (index === active) {
+        video.play().catch(() => {})
+      } else {
+        video.pause()
+      }
+    })
+  }, [active, activateVideo, activatedVideos])
+
   useEffect(() => () => timelineRef.current?.kill(), [])
 
   if (!count) return null
 
   const handleEnter = (index) => {
+    activateVideo(index)
     if (trigger === 'hover') setActive(index)
   }
 
   const handleClick = (index, event) => {
+    activateVideo(index)
     if (index !== active) {
       event.preventDefault()
       setActive(index)
@@ -148,10 +174,14 @@ const AccordionGallery = ({
   const handleKeyDown = (index, event) => {
     if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
       event.preventDefault()
-      setActive((index + 1) % count)
+      const nextIndex = (index + 1) % count
+      activateVideo(nextIndex)
+      setActive(nextIndex)
     } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
       event.preventDefault()
-      setActive((index - 1 + count) % count)
+      const nextIndex = (index - 1 + count) % count
+      activateVideo(nextIndex)
+      setActive(nextIndex)
     }
   }
 
@@ -191,8 +221,17 @@ const AccordionGallery = ({
           >
             <span className="ag-panel__frame">
               <span className="ag-panel__media" ref={(element) => { mediaRefs.current[index] = element }}>
-                {item.video && isActive ? (
-                  <video poster={item.image} autoPlay loop muted playsInline preload="metadata" aria-label={item.alt || item.label || ''}>
+                {item.video && (isActive || activatedVideos.has(index)) ? (
+                  <video
+                    ref={(element) => { videoRefs.current[index] = element }}
+                    poster={item.image}
+                    autoPlay={isActive}
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    aria-label={item.alt || item.label || ''}
+                  >
                     <source src={item.mobileVideo || item.video} type="video/mp4" media="(max-width: 760px)" />
                     <source src={item.video} type="video/mp4" media="(min-width: 761px)" />
                   </video>

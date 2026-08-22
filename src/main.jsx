@@ -114,12 +114,12 @@ const portfolioGroups = {
     { id: 'render-11', img: '/portfolio/render/render-11.jpg', height: 520, alt: '3D 渲染作品 11' },
   ],
   video: [
-    { id: 'video-01', video: '/portfolio/video/video-01.mp4', mobileVideo: '/portfolio/video/video-01-mobile.mp4', img: '/works/work-ai-sport.jpg', height: 620, alt: '视频剪辑作品 01' },
-    { id: 'video-02', video: '/portfolio/video/video-02-cf.mp4', mobileVideo: '/portfolio/video/video-02-mobile.mp4', img: '/works/work-ai-robot-full.jpg', height: 520, alt: '视频剪辑作品 02' },
-    { id: 'video-03', video: '/portfolio/video/video-03.mp4', mobileVideo: '/portfolio/video/video-03-mobile.mp4', img: '/works/work-kitchen-product.jpg', height: 580, alt: '视频剪辑作品 03' },
-    { id: 'video-04', video: '/portfolio/video/video-04-cf.mp4', mobileVideo: '/portfolio/video/video-04-mobile.mp4', img: '/works/work-ai-sport.jpg', height: 560, alt: '视频剪辑作品 04' },
-    { id: 'video-05', video: '/portfolio/video/video-05-cf.mp4', mobileVideo: '/portfolio/video/video-05-mobile.mp4', img: '/works/work-ai-robot.jpg', height: 560, alt: '视频剪辑作品 05' },
-    { id: 'video-06', video: '/portfolio/video/video-06-cf.mp4', mobileVideo: '/portfolio/video/video-06-mobile.mp4', img: '/works/work-ai-robot-full.jpg', height: 560, alt: '视频剪辑作品 06' },
+    { id: 'video-01', video: '/portfolio/video/video-01.mp4', mobileVideo: '/portfolio/video/video-01-mobile.mp4', img: '/portfolio/video/video-01-cover.jpg', height: 620, alt: '视频剪辑作品 01' },
+    { id: 'video-02', video: '/portfolio/video/video-02-cf.mp4', mobileVideo: '/portfolio/video/video-02-mobile.mp4', img: '/portfolio/video/video-02-cf-cover.jpg', height: 520, alt: '视频剪辑作品 02' },
+    { id: 'video-03', video: '/portfolio/video/video-03.mp4', mobileVideo: '/portfolio/video/video-03-mobile.mp4', img: '/portfolio/video/video-03-cover.jpg', height: 580, alt: '视频剪辑作品 03' },
+    { id: 'video-04', video: '/portfolio/video/video-04-cf.mp4', mobileVideo: '/portfolio/video/video-04-mobile.mp4', img: '/portfolio/video/video-04-cf-cover.jpg', height: 560, alt: '视频剪辑作品 04' },
+    { id: 'video-05', video: '/portfolio/video/video-05-cf.mp4', mobileVideo: '/portfolio/video/video-05-mobile.mp4', img: '/portfolio/video/video-05-cf-cover.jpg', height: 560, alt: '视频剪辑作品 05' },
+    { id: 'video-06', video: '/portfolio/video/video-06-cf.mp4', mobileVideo: '/portfolio/video/video-06-mobile.mp4', img: '/portfolio/video/video-06-cf-cover.jpg', height: 560, alt: '视频剪辑作品 06' },
   ],
   commerce: [
     ...Array.from({ length: 32 }, (_, index) => {
@@ -603,7 +603,7 @@ function App() {
           <div className="masonry-lightbox-card" onClick={(event) => event.stopPropagation()}>
             <div className="masonry-lightbox-head"><span>{selectedMasonryItem.alt || '作品原图'}</span><button className="modal-close" onClick={() => setSelectedMasonryItem(null)} aria-label="关闭原图">×</button></div>
             <div className="masonry-lightbox-media">
-              {selectedMasonryItem.video ? <video controls autoPlay muted playsInline preload="auto"><source src={selectedMasonryItem.mobileVideo || selectedMasonryItem.video} type="video/mp4" media="(max-width: 760px)" /><source src={selectedMasonryItem.video} type="video/mp4" media="(min-width: 761px)" /></video> : <img src={selectedMasonryItem.img} alt={selectedMasonryItem.alt || '作品原图'} />}
+              {selectedMasonryItem.video ? <video poster={selectedMasonryItem.img} controls autoPlay muted playsInline preload="auto"><source src={selectedMasonryItem.mobileVideo || selectedMasonryItem.video} type="video/mp4" media="(max-width: 760px)" /><source src={selectedMasonryItem.video} type="video/mp4" media="(min-width: 761px)" /></video> : <img src={selectedMasonryItem.img} alt={selectedMasonryItem.alt || '作品原图'} />}
             </div>
           </div>
         </div>
