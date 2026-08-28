@@ -120,6 +120,7 @@ const portfolioGroups = {
     { id: 'video-04', video: '/portfolio/video/video-04-cf.mp4', mobileVideo: '/portfolio/video/video-04-mobile.mp4', img: '/portfolio/video/video-04-cf-cover.jpg', height: 560, alt: '视频剪辑作品 04' },
     { id: 'video-05', video: '/portfolio/video/video-05-cf.mp4', mobileVideo: '/portfolio/video/video-05-mobile.mp4', img: '/portfolio/video/video-05-cf-cover.jpg', height: 560, alt: '视频剪辑作品 05' },
     { id: 'video-06', video: '/portfolio/video/video-06-cf.mp4', mobileVideo: '/portfolio/video/video-06-mobile.mp4', img: '/portfolio/video/video-06-cf-cover.jpg', height: 560, alt: '视频剪辑作品 06' },
+    { id: 'video-07', video: '/portfolio/video/video-07.mp4', mobileVideo: '/portfolio/video/video-07-mobile.mp4', img: '/portfolio/video/video-07-cover.jpg', height: 560, alt: '视频剪辑作品 07' },
   ],
   commerce: [
     ...Array.from({ length: 32 }, (_, index) => {
