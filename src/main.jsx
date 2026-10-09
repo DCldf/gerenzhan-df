@@ -13,7 +13,7 @@ const videoSource = '/hero-background.mp4'
 
 const experience = [
   {
-    period: '2025.02 — 2026.07',
+    period: '2025.02 — 2026.08',
     role: '美工 / 设计部',
     company: '泉州迪洛宾商贸有限公司',
     detail: '负责产品图像排版、修图与视觉优化，协同运营、客服、产品团队迭代页面，并用 AI 辅助图像处理与输出。',
@@ -30,12 +30,7 @@ const experience = [
     company: '泉州暖光设计有限公司',
     detail: '参与品牌平面设计、建模渲染与产品效果图制作，配合主创设计师完成效果图输出与排版。',
   },
-  {
-    period: '2016.03 — 2020.12',
-    role: '施工员 / 项目部',
-    company: '厦门集三建筑有限公司',
-    detail: '负责现场监管、测量检查与施工协同，建立了对尺度、材料和空间落地的长期敏感度。',
-  },
+
 ]
 
 const commerceAdditionalItems = [
@@ -92,6 +87,9 @@ const portfolioGroups = {
     { id: 'graphic-04', img: '/portfolio/graphic/graphic-04.jpg', height: 520, alt: '平面设计作品 04' },
     { id: 'graphic-05', img: '/portfolio/graphic/graphic-05.jpg', height: 600, alt: '平面设计作品 05' },
     { id: 'graphic-06', img: '/portfolio/graphic/graphic-06.jpg', height: 540, alt: '平面设计作品 06' },
+    { id: 'graphic-07', img: '/portfolio/graphic/graphic-07-school-album.png', height: 300, alt: '学校干部培训成长纪实画册跨页设计' },
+    { id: 'graphic-08', img: '/portfolio/graphic/graphic-08-recruitment.png', height: 1300, alt: '中国通信建设第三工程局社会招聘海报设计', longform: true },
+    { id: 'graphic-09', img: '/portfolio/graphic/graphic-09-photobooth-rollup.png', height: 1300, alt: '荔枝 PhotoBooth 婚礼与活动套餐易拉宝设计', longform: true },
   ],
   packaging: [
     { id: 'packaging-01', img: '/portfolio/packaging/packaging-01.png', height: 480, alt: '包装设计作品 01' },
@@ -144,7 +142,7 @@ const projects = [
     description: '从版式、色彩与信息层级出发，让平面画面更有秩序，也更容易被记住。',
     tags: ['版式设计', '信息排版', '视觉系统'],
     art: 'art-aurora',
-    image: portfolioGroups.graphic[0].img,
+    image: portfolioGroups.graphic[6].img,
     masonryItems: portfolioGroups.graphic,
   },
   {
@@ -193,14 +191,16 @@ const projects = [
     mobileVideo: portfolioGroups.video[0].mobileVideo,
     masonryItems: portfolioGroups.video,
   },
+
 ]
 
 const heroHighlights = [
-  { number: '01', title: '平面设计', detail: 'Poster / graphic / layout', art: 'art-aurora', image: portfolioGroups.graphic[0].img },
+  { number: '01', title: '平面设计', detail: 'Poster / graphic / layout', art: 'art-aurora', image: portfolioGroups.graphic[6].img },
   { number: '02', title: '包装设计', detail: 'Package / label / identity', art: 'art-orbit', image: portfolioGroups.packaging[4].img },
   { number: '03', title: '3D 渲染', detail: 'Material / light / form', art: 'art-tide', image: portfolioGroups.render[4].img },
   { number: '04', title: '视频剪辑', detail: 'Motion / rhythm / edit', art: 'art-grid', image: portfolioGroups.video[0].img, video: portfolioGroups.video[0].video, mobileVideo: portfolioGroups.video[0].mobileVideo },
   { number: '05', title: '电商设计', detail: 'Product / retouch / layout', art: 'art-aurora', image: commerceCover },
+
 ]
 
 const accordionItems = heroHighlights.map((item) => ({
@@ -454,7 +454,7 @@ function App() {
             </h1>
             <p className="hero-lede">视觉设计师 · AI 设计师 · 3D 渲染师<br />把品牌、产品和空间，转换成更有秩序的视觉语言。</p>
             <div className="hero-actions"><button className="hero-primary" onClick={() => scrollToId('work')}>查看作品 <span>↗</span></button><button className="hero-secondary" onClick={() => scrollToId('about')}>关于我 <span>↘</span></button></div>
-            <div className="hero-stat-strip"><div><strong>10+</strong><span>创作<br />经验</span></div><div><strong>04</strong><span>职业<br />阶段</span></div><div><strong>03</strong><span>核心视觉<br />方向</span></div></div>
+            <div className="hero-stat-strip"><div><strong>10+</strong><span>创作<br />经验</span></div><div><strong>03</strong><span>职业<br />阶段</span></div><div><strong>03</strong><span>核心视觉<br />方向</span></div></div>
           </div>
           <aside className="hero-spec-card">
             <div className="spec-heading"><span>设计 / 图像 / 形式</span><span>03 / 03</span></div>
@@ -511,11 +511,11 @@ function App() {
         </div>
         <div className="stat-row" data-motion-card>
           <div><strong>10</strong><span>YEARS OF<br />MAKING</span></div>
-          <div><strong>04</strong><span>CAREER<br />CHAPTERS</span></div>
+          <div><strong>03</strong><span>CAREER<br />CHAPTERS</span></div>
           <div><strong>02</strong><span>DEGREES IN<br />DESIGN ADJACENCY</span></div>
           <div className="stat-note">CURRENTLY OPEN TO<br /><b>SELECTED COLLABORATIONS</b></div>
         </div>
-        <div className="experience-head"><span>Experience</span><span>2016 — NOW</span></div>
+        <div className="experience-head"><span>Experience</span><span>2021 — NOW</span></div>
         <div className="experience-list">
           {experience.map((item, index) => (
             <BorderGlow
@@ -545,7 +545,7 @@ function App() {
 
       <section className="work section-shell" id="work" data-motion-section>
         <div className="section-kicker" data-motion-kicker><span>02</span><span>Selected work</span><span className="line" /></div>
-        <div className="work-intro"><h2 className="motion-title"><span className="motion-title-mask"><span className="motion-title-line" data-motion-title-line>Selected</span></span><span className="motion-title-mask"><span className="motion-title-line" data-motion-title-line><em>signals.</em></span></span></h2><div className="work-intro-meta" data-motion-copy><p>部分真实作品已接入。电商视觉、包装设计、AI 图像与后续视频作品会持续更新。</p><div className="work-modes"><span>IMAGE</span><span>PACKAGING</span><span>VIDEO / NEXT</span></div></div></div>
+        <div className="work-intro"><h2 className="motion-title"><span className="motion-title-mask"><span className="motion-title-line" data-motion-title-line>Selected</span></span><span className="motion-title-mask"><span className="motion-title-line" data-motion-title-line><em>signals.</em></span></span></h2><div className="work-intro-meta" data-motion-copy><p>平面设计新增画册、招聘与活动宣传作品；电商、包装、视频与 AI 视觉项目持续补充。</p><div className="work-modes"><span>IMAGE</span><span>PACKAGING</span><span>VIDEO / NEXT</span></div></div></div>
         <div className="project-grid">
           {projects.map((project) => (
             <button className={`project-card ${project.art}`} data-motion-card key={project.number} onClick={() => { setSelectedMasonryItem(null); setActiveProject(project) }}>
